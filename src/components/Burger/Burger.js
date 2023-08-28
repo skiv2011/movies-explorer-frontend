@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import IconProfile from '../IconProfile/IconProfile';
-import './Burger.css';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import IconProfile from "../IconProfile/IconProfile";
+import "./Burger.css";
 
-function Burger () {
-  
+function Burger() {
   const [isOpened, setIsOpened] = useState(false);
 
   const toggleMenu = () => {
@@ -17,10 +16,18 @@ function Burger () {
       <div className={`burger__container ${isOpened ? "show" : ""}`}>
         <button className="burger__close" onClick={toggleMenu} />
         <nav className="burger__links">
-          <NavLink to="/" className="burger__link">Главная</NavLink>
-          <NavLink to="/movies" className="burger__link">Фильмы</NavLink>
-          <NavLink to="/saved-movies" className="burger__link">Сохраненные фильмы</NavLink>
-          <NavLink to="/profile" className="burger__link">{IconProfile}</NavLink>
+          <NavLink to="/" className="burger__link">
+            Главная
+          </NavLink>
+          <NavLink to="/movies" className="burger__link">
+            Фильмы
+          </NavLink>
+          <NavLink to="/saved-movies" className="burger__link">
+            Сохраненные фильмы
+          </NavLink>
+          <NavLink to="/profile" className="burger__link">
+            {IconProfile}
+          </NavLink>
         </nav>
       </div>
       <div
@@ -29,6 +36,6 @@ function Burger () {
       />
     </div>
   );
-};
+}
 
 export default Burger;

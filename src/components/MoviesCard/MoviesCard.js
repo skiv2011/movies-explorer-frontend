@@ -1,30 +1,35 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import './MoviesCard.css';
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import "./MoviesCard.css";
 
 function MoviesCard({ title, duration, img }) {
   const location = useLocation();
-  const [isLiked, setIsLiked] = useState(false)
+  const [isLiked, setIsLiked] = useState(false);
   const handleLikeClick = () => {
-    setIsLiked(!isLiked)
+    setIsLiked(!isLiked);
   };
 
   return (
     <li className="card">
-      <img src={img} alt={title} className="card__img" />
-      <div className='card__description'>
-        <div>
-          <p className="card__title">{title}</p>
-          <p className="card__duration">{duration}</p>
+      <div className="card__content">
+        <img src={img} alt={title} className="card__img" />
+        <div className="card__description">
+          <div>
+            <h2 className="card__title">{title}</h2>
+            <p className="card__duration">{duration}</p>
+          </div>
+          {location.pathname === "/movies" ||
+          location.pathname === "/movies/" ? (
+            <button
+              className={`card__button card__button_like ${
+                isLiked ? "card__button_unlike" : ""
+              }`}
+              onClick={handleLikeClick}
+            ></button>
+          ) : (
+            <button className="card__button card__button_delete"></button>
+          )}
         </div>
-        {location.pathname === '/movies' || location.pathname === '/movies/' ? (
-          <button
-            className={`movie-card__button movie-card__button_like ${isLiked ? 'movie-card__button_unlike' : ''}`}
-            onClick={handleLikeClick}
-          ></button>
-        ) : (
-          <button className="movie-card__button movie-card__button_delete"></button>
-        )}
       </div>
     </li>
   );

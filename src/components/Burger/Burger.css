@@ -3,7 +3,7 @@
 .burger__button {
   position: fixed;
   top: 20px;
-  right: 20px;
+  right: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,6 @@
   background-image: url(../../images/icon-burger.svg);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 28px 23px;
   opacity: 1;
 }
 
@@ -66,7 +65,6 @@
   width: 22px;
   height: 22px;
   background-image: url(../../images/icon-close-btn.svg);
-  background-size: 22px 22px;
   background-repeat: no-repeat;
   background-position: center center;
   border: none;
@@ -139,6 +137,25 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .burger__container {
+    width: 68%;
+    max-width: 520px;
+  }
+
+  .burger__link {
+    margin: 0 0 20px 0;
+    padding: 4px 0;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    opacity: 1;
+    transition: 0.1s linear;
+  }
+}
+
 @media screen and (max-width: 425px) {
   .page-overlay {
     display: none;
@@ -149,8 +166,21 @@
     max-width: initial;
   }
 
+  .burger__button {
+    position: fixed;
+    top: 22px;
+    right: 25px;
+    width: 23px;
+    height: 30px;
+  }
+
   .burger__close {
-    top: 14px;
-    right: 14px;
+    top: 36px;
+    right: 18px;
+  }
+
+  .burger__link.active {
+    text-decoration: underline;
+    text-underline-offset: 11px;
   }
 }

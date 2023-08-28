@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
-import './NotFound.css';
+import "./NotFound.css";
 
-const NotFound = () => {
+function NotFound() {
   return (
-    <div className='not-found'>
-      <div className="not-found__wrapper">
-        <p className="not-found__title">404</p>
-        <p className="not-found__description">Страница не найдена</p>
-      </div>
-      <Link to="/" className="not-found__link">Назад</Link>
-    </div>
-  )
+    <main className="not-found">
+      <section>
+        <div className="not-found__wrapper">
+          <h1 className="not-found__title">404</h1>
+          <p className="not-found__description">Страница не найдена</p>
+        </div>
+        <Link to="/" className="not-found__link">
+          Назад
+        </Link>
+      </section>
+    </main>
+  );
 }
 
-export  default NotFound;
+export default NotFound;

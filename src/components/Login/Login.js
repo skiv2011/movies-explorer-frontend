@@ -1,43 +1,40 @@
-import Form from '../Form/Form';
-import './Login.css';
+import React, { useState } from "react";
+import FormButtons from "../FormAuth/FormButtons/FormButtons";
+import FormLabel from "../FormAuth/FormLabel/FormLabel";
+import FormHeader from "../FormAuth/FormHeader/FormHeader";
+import "./Login.css";
 
-function Login () {
+function Login() {
+  const [email, setEmail] = useState("pochta@yandex.ru");
+  const [password, setPassword] = useState("");
+
   return (
-    <section className="login">
-        <div className="login__container">
-          <Form 
-            header="Рады видеть!"
-            askText="Ещё не зарегистрированы?"
-            askLinkText="Регистрация"
-            askLink="/signup"
-            submitBtnText="Войти"
-          >
-            <label className="form__label">
-            E-mail
-              <input 
-                className="form__input" 
-                placeholder="pochta@yandex.ru"
-                type="email"
-                required
-                name="email"
+    <div className="login">
+      <div className="login__container">
+        <FormHeader />
+        <main className="login__main">
+          <form className="login__form">
+            <div className="login__inputs">
+              <FormLabel
+                value={email}
+                setValue={setEmail}
+                span={"E-mail"}
+                placeholder={"Введите e-mail"}
               />
-            </label>
-            <span className="form__text-error"></span>
-            <label className="form__label">
-            Пароль
-              <input 
-                className="form__input form__input_error" 
-                type="password" 
-                placeholder="" 
-                required
-                name="password"
+              <FormLabel
+                value={password}
+                setValue={setPassword}
+                span={"Пароль"}
+                placeholder={""}
+                type="password"
               />
-            </label>
-            <span className="form__text-error"></span>
-          </Form>
-        </div>
-      </section>
-  )
+            </div>
+            <FormButtons />
+          </form>
+        </main>
+      </div>
+    </div>
+  );
 }
 
 export default Login;

@@ -1,12 +1,23 @@
 .header {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  width: 100%;
-  min-height: 74px;
+  background-color: #202020;
   display: flex;
-  justify-content: space-around;
-  z-index: 200;
+
+  align-items: center;
+  min-height: 74px;
+  padding: 0 70px 0;
+  justify-content: space-between;
+}
+
+.header__logo {
+  background-image: url("../../images/logo.svg");
+  height: 38px;
+  width: 38px;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.header__logo:hover {
+  opacity: 0.6;
 }
 
 .header_place_main {
@@ -29,28 +40,15 @@
   background-color: #202020;
 }
 
-.header__container {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1140px;
-  width: calc(100% - 140px);
+@media (max-width: 768px) {
+  .header {
+    padding: 0 32px 0;
+  }
 }
 
-@media screen and (max-width: 768px) {
-
-  .header__container {
-    width: calc(100% - 100px);
+@media (max-width: 600px) {
+  .header {
+    padding-left: 14px;
+    padding-right: 14px;
   }
-
-}
-
-@media screen and (max-width: 425px) {
-
-  .header__container {
-    width: calc(100% - 28px);
-  }
-  
 }

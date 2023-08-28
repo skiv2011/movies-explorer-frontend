@@ -1,58 +1,48 @@
-import './Register.css';
-import Form from '../Form/Form';
+import { useState } from "react";
+import "./Register.css";
+import FormLabel from "../FormAuth/FormLabel/FormLabel";
+import FormButtons from "../FormAuth/FormButtons/FormButtons";
+import FormHeader from "../FormAuth/FormHeader/FormHeader";
 
-function Register () {
-  return(
-    
-    <main>
-    <section className="register">
+function Register() {
+  const [name, setName] = useState("Виталий");
+  const [email, setEmail] = useState("pochta@yandex.ru");
+  const [password, setPassword] = useState("••••••••••••••");
+
+  return (
+    <div className="register">
       <div className="register__container">
-        <Form 
-          header="Добро пожаловать!"
-          askText="Уже зарегистрированы?"
-          askLinkText="Войти"
-          askLink="/signin"
-          submitBtnText="Зарегистрироваться"
-        >
-          <label className="form__label">
-          Имя
-              <input 
-                className="form__input" 
-                placeholder="Виталий" 
-                type="text"
-                required
-                name="name"
-                />
-                 </label>
-              <span className="form__text-error"></span>
-              <label className="form__label">
-              E-mail
-                <input 
-                  className="form__input" 
-                  placeholder="pochta@yandex.ru"
-                  type="email"
-                  required
-                  name="email"
-                />
-              </label>
-              <span className="form__text-error"></span>
-              <label className="form__label">
-              Пароль
-                <input 
-                  className="form__input form__input_error" 
-                  type="password" 
-                  placeholder="" 
-                  required
-                  name="password"
-                />
-              </label>
-              <span className="form__text-error">Что-то пошло не так...</span>
-            </Form>
-        </div>
-      </section>
-    </main>
-  )
+        <FormHeader />
+        <main className="register__main">
+          <form className="register__form">
+            <div className="register__inputs">
+              <FormLabel
+                value={name}
+                setValue={setName}
+                span={"Имя"}
+                placeholder={"Введите имя"}
+              />
+              <FormLabel
+                value={email}
+                setValue={setEmail}
+                span={"E-mail"}
+                placeholder={"Введите e-mail"}
+              />
+              <FormLabel
+                value={password}
+                setValue={setPassword}
+                span={"Пароль"}
+                placeholder={"Введите пароль"}
+                classError={"label__input_error"}
+                errorMessage={"Что-то пошло не так..."}
+                type="password"
+              />
+            </div>
+            <FormButtons />
+          </form>
+        </main>
+      </div>
+    </div>
+  );
 }
-
 export default Register;
-  

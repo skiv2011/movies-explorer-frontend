@@ -1,18 +1,14 @@
-
-import Logo from "../Logo/Logo";
+import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
-import './Header.css';
+import "./Header.css";
 
-function Header ({ place, isLogged}) {
+function Header({ place, isLogged }) {
   return (
     <header className={`header header_place_${place}`}>
-      <div className="header__container">
-        
-          <Logo />
-          <Navigation isLogged={isLogged} />
-      </div>
+      <Link to="/" className="header__logo" />
+      <Navigation isLogged={isLogged} />
     </header>
   );
-};
+}
 
 export default Header;

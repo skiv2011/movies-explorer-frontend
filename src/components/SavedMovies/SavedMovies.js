@@ -1,16 +1,13 @@
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import SearchForm from '../SearchForm/SearchForm';
-import Header from '../Header/Header';
-import './SavedMovies.css';
-import Footer from '../Footer/Footer';
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from "../SearchForm/SearchForm";
+import Header from "../Header/Header";
+import "./SavedMovies.css";
+import Footer from "../Footer/Footer";
 
-function SavedMovies () {
-  return(
+function SavedMovies() {
+  return (
     <>
-      <Header 
-        place="saved"
-        isLogged={true}
-      />
+      <Header place="saved" isLogged={true} />
       <main>
         <SearchForm />
         <MoviesCardList />
@@ -18,6 +15,6 @@ function SavedMovies () {
       <Footer />
     </>
   );
-};
+}
 
 export default SavedMovies;
