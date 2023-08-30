@@ -1,0 +1,48 @@
+@import "../../vendor/Fonts/fonts.css";
+
+.promo {
+  display: flex;
+  flex-direction: row;
+  min-height: 524px;
+  background: #073042 url(../../images/promo__logo.svg) no-repeat center 82px;
+  background-size: 320px;
+}
+
+.promo__title {
+  color: #fff;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  max-width: 730px;
+  margin: 184px auto 224px auto;
+  font-size: 50px;
+  line-height: 58px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 768px) {
+  .promo {
+    min-height: 784px;
+    background: #073042 url(../../images/promo__logo.svg) no-repeat center 224px;
+  }
+  .promo__title {
+    margin: 326px auto 342px auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .promo {
+    min-height: 570px;
+    background: #073042 url(../../images/promo__logo.svg) no-repeat center 142px;
+    background-size: 248px;
+  }
+
+  .promo__title {
+    max-width: 300px;
+
+    margin: 208px auto 246px auto;
+
+    font-size: 31px;
+    line-height: 39px;
+  }
+}

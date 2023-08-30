@@ -1,0 +1,54 @@
+.header {
+  background-color: #202020;
+  display: flex;
+
+  align-items: center;
+  min-height: 74px;
+  padding: 0 70px 0;
+  justify-content: space-between;
+}
+
+.header__logo {
+  background-image: url("../../images/logo.svg");
+  height: 38px;
+  width: 38px;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+.header__logo:hover {
+  opacity: 0.6;
+}
+
+.header_place_main {
+  background-color: #073042;
+}
+
+.header_place_movies {
+  background-color: #202020;
+}
+
+.header_place_saved {
+  background-color: #202020;
+}
+
+.header_place_register {
+  background-color: #202020;
+}
+
+.header_place_profile {
+  background-color: #202020;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 32px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
