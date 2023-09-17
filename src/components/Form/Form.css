@@ -39,13 +39,13 @@
 }
 
 .form__input-error {
-  color: var(--accent-pink);
+  color: #EE3465;
 }
 
 .form__input:focus {
   border: none;
   outline: none;
-  border-bottom: 1px solid var(--blue);
+  
 }
 
 .form__btn-submit {
@@ -54,17 +54,17 @@
   display: block;
   border: 0;
   border-radius: 3px;
-  background-color: var(--blue);
+  background-color: #3456f3;
   width: 100%;
-  color: var(--white);
+  color: #fff;
   cursor: pointer;
   opacity: 1;
   transition: 0.1s linear;
 }
 
 .form__btn-submit:disabled {
-  background-color: var(--disabled-text);
-  color: var(--disabled-btn);
+  background-color: #8ab1f0;
+  color: #c2c2c2;
   cursor: not-allowed;
 }
 
