@@ -1,39 +1,120 @@
 import Header from "../Header/Header";
 import "./Profile.css";
-import { Link } from "react-router-dom";
+import BtnSubmit from "../BtnSubmit/BtnSubmit";
+import { useState, useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useFormValidation } from "../../utils/useFormValidation";
 
-function Profile() {
+function Profile({ formError, onSignOut, onEditProfile, isSubmiting }) {
+  const currentUser = useContext(CurrentUserContext);
+  const profileForm = useFormValidation({
+    name: currentUser.name,
+    email: currentUser.email,
+  });
+  const [isEditable, setIsEditable] = useState(false);
+
+  const onEditBtnClick = () => {
+    setIsEditable(true);
+    profileForm.setIsValid(false);
+  };
+
+  const handleChange = (e) => {
+    profileForm.handleChange(e);
+    if (e.target.value === currentUser[e.target.name]) {
+      profileForm.setIsValid(false);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onEditProfile({
+      name: profileForm.values.name,
+      email: profileForm.values.email,
+    });
+    setIsEditable(false);
+  };
+
+  const onSignOutClick = () => {
+    onSignOut();
+  };
+
   return (
     <main className="profile">
-      <Header place="profile" isLogged={true} />
+      <Header place="profile" isLoggedIn={true} />
       <section className="profile__section">
         <div className="profile__container">
-          <h1 className="profile__header">Привет, Виталий!</h1>
+          <h1 className="profile__header">{`Привет, ${currentUser.name}!`}</h1>
           <form className="profile__form">
             <label className="profile__label">
               Имя
               <input
-                className="profile__input"
+                className={
+                  profileForm.errors.name
+                    ? "profile__input profile__input-error"
+                    : "profile__input"
+                }
                 type="text"
-                placeholder="Виталий"
+                placeholder={currentUser.name}
+                name="name"
                 required
+                value={profileForm.values.name}
+                onChange={handleChange}
+                readOnly={isEditable ? false : true}
+                minLength={2}
               />
             </label>
+            <span className="form__input-text-error form__input-text-error-name">
+              {profileForm.errors.name}
+            </span>
             <label className="profile__label">
               Email
               <input
-                className="profile__input"
+                className={
+                  profileForm.errors.email
+                    ? "profile__input profile__input-error"
+                    : "profile__input"
+                }
                 type="email"
-                placeholder="pochta@yandex.ru"
+                placeholder={currentUser.email}
+                name="email"
                 required
+                value={profileForm.values.email}
+                onChange={handleChange}
+                readOnly={isEditable ? false : true}
+                minLength={2}
               />
             </label>
+            <span className="form__input-text-error form__input-text-error-name">
+              {profileForm.errors.email}
+            </span>
           </form>
           <div className="profile__link-container">
-            <button className="profile__btn-edit">Редактировать</button>
-            <Link to={"/"} className="profile__btn-logout">
+            <span className="form__text-error">
+              {formError.isError ? formError.text : ""}
+            </span>
+            {isEditable ? (
+              <BtnSubmit
+                isBtnDisabled={!profileForm.isValid}
+                onSubmit={handleSubmit}
+                submitBtnText="Сохранить"
+                isSubmiting={isSubmiting}
+              />
+            ) : (
+              <button
+                type="button"
+                className="profile__btn-edit"
+                onClick={onEditBtnClick}
+              >
+                Редактировать
+              </button>
+            )}
+            <button
+              disabled={isSubmiting}
+              className="profile__btn-logout"
+              onClick={onSignOutClick}
+            >
               Выйти из аккаунта
-            </Link>
+            </button>
           </div>
         </div>
       </section>

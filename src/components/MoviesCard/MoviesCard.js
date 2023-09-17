@@ -1,34 +1,74 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { BASE_URL_MOVIES } from "../../utils/constants";
 import "./MoviesCard.css";
 
-function MoviesCard({ title, duration, img }) {
-  const location = useLocation();
-  const [isLiked, setIsLiked] = useState(false);
-  const handleLikeClick = () => {
-    setIsLiked(!isLiked);
+function MoviesCard({
+  movie,
+  savedMovies,
+  onLike,
+  onDislike,
+  isSubmiting,
+  place,
+}) {
+  const imagURl = movie.image.url
+    ? `${BASE_URL_MOVIES}${movie.image.url}`
+    : movie.image;
+
+  const onClickCard = () => {
+    window.open(movie.trailerLink, "_blank", "noreferrer");
   };
+
+  const minutesToHours = (totalMinutes) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours}ч ${minutes}м`;
+  };
+
+  const handleCardLike = () => {
+    if (isLiked) {
+      const savedMovieId = savedMovies.find((obj) => obj.id === movie.id)._id;
+      onDislike(savedMovieId);
+    } else {
+      onLike(movie);
+    }
+  };
+
+  const checkIfLiked = (movie, savedMovies) => {
+    return savedMovies.some((savedMovie) => savedMovie.id === movie.id)
+      ? true
+      : false;
+  };
+
+  const isLiked = checkIfLiked(movie, savedMovies);
+
+  const btnIcon = place === "saved" ? "card__icon-del" : "card__icon-saved";
+  const btnClass = isLiked
+    ? `card__button ${
+        place === "saved" ? "card__button_delete" : "card__button_unlike"
+      }`
+    : "card__button card__button_like";
 
   return (
     <li className="card">
       <div className="card__content">
-        <img src={img} alt={title} className="card__img" />
+        <img
+          src={imagURl}
+          alt={movie.nameRU}
+          className="card__img"
+          onClick={onClickCard}
+        />
         <div className="card__description">
           <div>
-            <h2 className="card__title">{title}</h2>
-            <p className="card__duration">{duration}</p>
+            <h2 className="card__title">{movie.nameRU}</h2>
+            <p className="card__duration">{minutesToHours(movie.duration)}</p>
           </div>
-          {location.pathname === "/movies" ||
-          location.pathname === "/movies/" ? (
-            <button
-              className={`card__button card__button_like ${
-                isLiked ? "card__button_unlike" : ""
-              }`}
-              onClick={handleLikeClick}
-            ></button>
-          ) : (
-            <button className="card__button card__button_delete"></button>
-          )}
+
+          <button
+            className={btnClass}
+            onClick={handleCardLike}
+            disabled={isSubmiting}
+          >
+            {isLiked ? <span className={btnIcon} /> : ""}
+          </button>
         </div>
       </div>
     </li>

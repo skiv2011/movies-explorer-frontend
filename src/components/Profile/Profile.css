@@ -135,7 +135,9 @@
 
 @media (max-width: 900px) {
   .profile__container {
+    margin: 0 auto;
     padding: 236px 0 268px 0;
+    max-width: 410px;
   }
   .profile__header {
     padding: 0 0 96px 0;
