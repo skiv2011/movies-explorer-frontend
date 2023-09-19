@@ -5,6 +5,7 @@ function SearchForm({ onSearch, isGlobalSearch, setSearchError, isSubmiting }) {
   const [isChecked, setIsChecked] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   useEffect(() => {
     if (isGlobalSearch) {
@@ -42,7 +43,10 @@ function SearchForm({ onSearch, isGlobalSearch, setSearchError, isSubmiting }) {
       keywords: searchValue,
       isGlobalSearch: isGlobalSearch,
     });
+    setIsFormSubmitted(true);
   };
+
+  const isKeywordEmpty = !searchValue.trim();
 
   useEffect(() => {
     setIsDisabled(isSubmiting ? true : false);
@@ -51,20 +55,22 @@ function SearchForm({ onSearch, isGlobalSearch, setSearchError, isSubmiting }) {
   return (
     <div className="search">
       <div className="search__container">
-        <form className="search__form" onSubmit={handleSubmit}>
+        <form className="search__form" onSubmit={handleSubmit} noValidate>
           <input
             className="search__input"
             placeholder="Фильм"
             required
             value={searchValue}
             onChange={handleChange}
-          />
+            />
           <button
             className="search__submit-btn"
             type="submit"
-            disabled={isDisabled}
           />
         </form>
+        {isKeywordEmpty && isFormSubmitted && (
+  <span className="search__error-title">Нужно ввести ключевое слово</span>
+)}
         <div className="checkbox">
           <label className="checkbox__content">
             <input

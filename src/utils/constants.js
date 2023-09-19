@@ -1,5 +1,5 @@
-// const BASE_URL_MAIN = 'http://localhost:3000';
-const BASE_URL_MAIN = "https://api.movies.skiv2011.nomoreparties.sbs";
+const BASE_URL_MAIN = 'http://localhost:3000';
+// const BASE_URL_MAIN = "https://api.movies.skiv2011.nomoreparties.sbs";
 
 export const BASE_URL_MOVIES = "https://api.nomoreparties.co";
 
@@ -29,17 +29,17 @@ export const REG_NAME = /^[a-zA-ZА-Яа-яЁё'\- ]{2,}$/;
 
 export const SHORTS_DURATION_MIN = 40;
 export const SCREEN_L = {
-  minWidth: 1096,
+  minWidth: 1280,
   renderItemsCount: 12,
   renderMoreCount: 3,
 };
 export const SCREEN_M = {
-  minWidth: 685,
+  minWidth: 1010,
   renderItemsCount: 8,
   renderMoreCount: 2,
 };
 export const SCREEN_S = {
-  minWidth: 0,
+  minWidth: 480,
   renderItemsCount: 5,
   renderMoreCount: 2,
 };

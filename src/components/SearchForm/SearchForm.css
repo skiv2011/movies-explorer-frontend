@@ -66,6 +66,17 @@
   color: #fff;
 }
 
+.search__error-title {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+  font-size: 13px;
+  line-height: 17px;
+  font-weight: 400;
+  color: #EE3465;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+}
+
 .checkbox__input:checked + .checkbox__slider:before {
   background-color: #fff;
   transform: translateX(16px);

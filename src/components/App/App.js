@@ -92,7 +92,7 @@ function App() {
       .finally(() => setIsSubmiting(false));
   };
 
-  // get all movies from BeatsFilms API for the first time
+  
   const getAllMovies = () => {
     return new Promise((resolve, reject) => {
       if (allMovies.length > 0) {

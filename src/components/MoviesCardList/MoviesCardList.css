@@ -48,6 +48,13 @@
   font-size: 12px;
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
 }
+.movies-list__error {
+  font-size: 13px;
+  line-height: 17px;
+  font-weight: 400;
+  color: #EE3465;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+}
 
 @media screen and (max-width: 768px) {
   .movies-list {

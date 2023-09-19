@@ -14,6 +14,8 @@
   flex-direction: column;
   align-items: center;
   flex: 1 1 auto;
+  margin: 0 auto;
+  max-width: 410px;
 }
 
 .profile__header {

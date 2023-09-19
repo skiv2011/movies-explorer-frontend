@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { useLocation } from 'react-router-dom';
 import Preloader from "../Preloader/Preloader";
 import { SCREEN_L, SCREEN_M, SCREEN_S } from "../../utils/constants";
 import "./MoviesCardList.css";
@@ -14,12 +15,22 @@ function MoviesCardList({
   isSubmiting,
   place,
 }) {
+  const { pathname } = useLocation();
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
+  const [isMoreButton, setIsMoreButton] = useState(false);
   const [renderedMovies, setRenderedMovies] = useState({
     renderItemsCount: SCREEN_S.renderItemsCount,
     renderMoreCount: SCREEN_S.renderMoreCount,
     movies: movies,
   });
+
+  useEffect(() => {
+    window.addEventListener("resize", checkScreenSize);
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
 
   const checkScreenSize = () => {
     const width = window.screen.width;
@@ -44,7 +55,7 @@ function MoviesCardList({
     }
   };
 
-  const handleLoadMore = () => {
+  const handleMoreBtnClick = () => {
     const newCount = (renderedMovies.renderItemsCount +=
       renderedMovies.renderMoreCount);
     setRenderedMovies({ ...renderedMovies, renderItemsCount: newCount });
@@ -54,14 +65,18 @@ function MoviesCardList({
     setRenderedMovies({ ...renderedMovies, movies: movies });
   }, [movies]);
 
+  
+  
   useEffect(() => {
-    setRenderedMovies({ ...renderedMovies, movies: movies });
-    checkScreenSize(screenWidth);
-    window.addEventListener("resize", checkScreenSize);
-    return () => {
-      window.removeEventListener("resize", checkScreenSize);
-    };
-  }, []);
+    if (pathname === '/movies' ) {
+      movies.length > renderedMovies.renderItemsCount ? setIsMoreButton(true) : setIsMoreButton(false);
+    } else {
+      setIsMoreButton(false);
+      setRenderedMovies({ ...renderedMovies, movies: movies });
+    }
+  }, [pathname, movies.length, renderedMovies]);
+
+
 
   return (
     <section className="movies-list">
@@ -91,16 +106,16 @@ function MoviesCardList({
         {searchError.isError && (
           <p className="movies-list__error">{searchError.text}</p>
         )}
-        {movies.length > renderedMovies.renderItemsCount && (
+        {isMoreButton ?
           <button
             className="movies-list__button_active"
             type="button"
-            onClick={handleLoadMore}
+            onClick={handleMoreBtnClick}
             disabled={isSubmiting}
           >
             Ещё
           </button>
-        )}
+        : ''}
       </div>
     </section>
   );
