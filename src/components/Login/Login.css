@@ -1,44 +1,42 @@
-@import "../../vendor/Fonts/fonts.css";
-
 .login {
-  background-color: #202020;
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  margin: 0;
+  padding: 70px 0 0 0;
+  display: flex;
+  height: 127vh;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .login__container {
   margin: 0 auto;
-  padding: 70px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto) 1fr;
+  align-items: start;
   max-width: 396px;
-  min-height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-.login__main {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-}
-.login__form {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  width: 100%;
 }
 
-.login__inputs {
-  margin: 0 0 158px 0;
-}
-@media (max-width: 900px) {
+@media screen and (max-width: 768px) {
+  .login {
+    padding: 0;
+    align-items: center;
+  }
+
   .login__container {
-    padding: 232px 0;
+    width: calc(100% - 60px);
   }
 }
-@media (max-width: 560px) {
-  .login__container {
-    padding: 56px 0 30px 0;
-    max-width: 260px;
+
+@media screen and (max-width: 425px) {
+  .login {
+    height: 127vh;
   }
-  .login__inputs {
-    margin: 0px 0 245px 0;
+
+  .login__container {
+    height: 100%;
+    align-items: center;
+    justify-items: center;
   }
 }

@@ -1,46 +1,41 @@
-@import "../../vendor/Fonts/fonts.css";
-
 .register {
-  background-color: #202020;
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  margin: 0;
+  padding: 70px 0 0 0;
+  display: flex;
+  height: 130vh;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .register__container {
   margin: 0 auto;
-  padding: 70px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto) 1fr;
+  align-items: start;
   max-width: 396px;
-  min-height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  background-color: #202020;
-}
-.register__main {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-}
-.register__form {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  width: 100%;
 }
 
-.register__inputs {
-  margin: 0 0 69px 0;
-}
-@media (max-width: 900px) {
-  .register__container {
-    padding: 232px 0;
-  }
-}
-@media (max-width: 560px) {
-  .register__container {
-    padding: 56px 0 30px 0;
-    max-width: 260px;
+@media screen and (max-width: 768px) {
+  .register {
+    align-items: center;
   }
 
-  .register__inputs {
-    margin: 0 0 157px 0;
+  .register__container {
+    width: calc(100% - 60px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .register {
+    height: 127vh;
+  }
+
+  .register__container {
+    height: 100%;
+    align-items: center;
+    justify-items: center;
   }
 }

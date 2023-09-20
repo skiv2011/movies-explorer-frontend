@@ -1,48 +1,92 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./SearchForm.css";
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-const SearchForm = ({ handleSubmitSearch }) => {
-  const [keyWord, setKeyWord] = useState("");
-  const [isShort, setIsShot] = useState(false);
+function SearchForm({ onSearch, isGlobalSearch, setSearchError, isSubmiting }) {
+  const [isChecked, setIsChecked] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  const handleInputKeyWord = (evt) => setKeyWord(evt.target.value);
+  useEffect(() => {
+    if (isGlobalSearch) {
+      const userCheckedBefore = localStorage.getItem("isChecked");
+      setIsChecked(userCheckedBefore === "true" ? true : false);
+      const userSearchBefore = localStorage.getItem("search");
+      setSearchValue(userSearchBefore ? userSearchBefore : "");
+    }
+  }, []);
 
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-    handleSubmitSearch(keyWord);
+  const toggleCheckbox = (e) => {
+    setIsChecked(e.target.checked);
+    setSearchError({ isError: false, text: "" });
+    onSearch({
+      isShortFilm: e.target.checked,
+      keywords: searchValue,
+      isGlobalSearch: isGlobalSearch,
+    });
   };
 
+  const handleChange = (e) => {
+    setSearchValue(e.target.value);
+    setIsDisabled(!e.target.value ? true : false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchError({ isError: false, text: "" });
+  
+    if (isGlobalSearch) {
+      localStorage.setItem("search", searchValue);
+    }
+    onSearch({
+      isShortFilm: isChecked,
+      keywords: searchValue,
+      isGlobalSearch: isGlobalSearch,
+    });
+    setIsFormSubmitted(true);
+  };
+
+  const isKeywordEmpty = !searchValue.trim();
+
+  useEffect(() => {
+    setIsDisabled(isSubmiting ? true : false);
+  }, [isSubmiting]);
+
   return (
-    <section className="search">
-      <div className="search__content">
-        <form
-          className="search__form"
-          name="form-search"
-          action=""
-          method=""
-          onSubmit={onSubmit}
-        >
+    <div className="search">
+      <div className="search__container">
+        <form className="search__form" onSubmit={handleSubmit} noValidate>
           <input
-            value={keyWord}
             className="search__input"
-            type="text"
-            name="search"
             placeholder="Фильм"
             required
-            onChange={handleInputKeyWord}
-          />
+            value={searchValue}
+            onChange={handleChange}
+            />
           <button
             className="search__submit-btn"
             type="submit"
-            aria-label="Поиск"
           />
         </form>
-        <FilterCheckbox isShort={isShort} setIsShot={setIsShot} />
-        <hr className="search__line"></hr>
+        {isKeywordEmpty && isFormSubmitted && (
+  <span className="search__error-title">Нужно ввести ключевое слово</span>
+)}
+        <div className="checkbox">
+          <label className="checkbox__content">
+            <input
+              className="checkbox__input"
+              type="checkbox"
+              onChange={toggleCheckbox}
+              checked={isChecked}
+              disabled={isSubmiting}
+            />
+            <span className="checkbox__slider" />
+            <span className="checkbox__name">Короткометражки</span>
+          </label>
+        </div>
       </div>
-    </section>
+    </div>
   );
-};
+}
 
 export default SearchForm;
