@@ -1,5 +1,5 @@
-const BASE_URL_MAIN = 'http://localhost:3000';
-// const BASE_URL_MAIN = "https://api.movies.skiv2011.nomoreparties.sbs";
+// const BASE_URL_MAIN = 'http://localhost:3000';
+const BASE_URL_MAIN = "https://api.movies.skiv2011.nomoreparties.sbs";
 
 export const BASE_URL_MOVIES = "https://api.nomoreparties.co";
 
@@ -43,13 +43,3 @@ export const SCREEN_S = {
   renderItemsCount: 5,
   renderMoreCount: 2,
 };
-// export const SCREEN_SMALL = 320
-// export const SCREEN_MIDDLE = 768
-// export const SCREEN_LARGE = 1280
-// export const MOVIES_SMALL = 5
-// export const MOVIES_SMALL_TO_ADD = 2
-// export const MOVIES_MIDDLE = 8
-// export const MOVIES_MIDDLE_TO_ADD = 2
-// export const MOVIES_LARGE = 16
-// export const MOVIES_LARGE_TO_ADD = 4
-// export const SHORT_TIMING = 40
