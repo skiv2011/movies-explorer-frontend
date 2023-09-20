@@ -33,10 +33,9 @@ function MoviesCard({
   };
 
   const checkIfLiked = (movie, savedMovies) => {
-    return savedMovies.some((savedMovie) => savedMovie.id === movie.id)
-      ? true
-      : false;
+    return Array.isArray(savedMovies) && savedMovies.some((savedMovie) => savedMovie.id === movie.id);
   };
+  
 
   const isLiked = checkIfLiked(movie, savedMovies);
 

@@ -30,7 +30,7 @@
 
 @media screen and (max-width: 425px) {
   .register {
-    height: 100vh;
+    height: 127vh;
   }
 
   .register__container {

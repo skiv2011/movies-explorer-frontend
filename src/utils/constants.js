@@ -34,12 +34,22 @@ export const SCREEN_L = {
   renderMoreCount: 3,
 };
 export const SCREEN_M = {
-  minWidth: 1010,
+  minWidth: 768,
   renderItemsCount: 8,
   renderMoreCount: 2,
 };
 export const SCREEN_S = {
-  minWidth: 480,
+  minWidth: 320,
   renderItemsCount: 5,
   renderMoreCount: 2,
 };
+// export const SCREEN_SMALL = 320
+// export const SCREEN_MIDDLE = 768
+// export const SCREEN_LARGE = 1280
+// export const MOVIES_SMALL = 5
+// export const MOVIES_SMALL_TO_ADD = 2
+// export const MOVIES_MIDDLE = 8
+// export const MOVIES_MIDDLE_TO_ADD = 2
+// export const MOVIES_LARGE = 16
+// export const MOVIES_LARGE_TO_ADD = 4
+// export const SHORT_TIMING = 40
